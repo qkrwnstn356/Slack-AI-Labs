@@ -61,7 +61,7 @@ function HomePage() {
       <section
         id="overview"
         data-reveal
-        className="relative overflow-hidden rounded-[28px] border border-slate-700 bg-slate-900 px-6 py-10 shadow-[0_20px_48px_rgba(0,0,0,0.35)] md:px-12"
+        className="relative overflow-hidden rounded-[28px] border border-slate-700 bg-slate-900 px-6 py-10 shadow-[0_20px_48px_rgba(0,0,0,0.35)] md:px-12 lg:pr-56"
       >
         <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-[radial-gradient(circle,rgba(120,169,255,0.22),transparent_65%)]" />
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#78a9ff]">AI LABS PLATFORM</p>
@@ -70,9 +70,9 @@ function HomePage() {
           <br />
           통합형 Labs 허브
         </h1>
-        <p className="mt-5 max-w-3xl text-base text-slate-400 sm:text-lg">
-          Slack Nyangi를 포함해 팀에서 운영하는 App과 Solution을 한 화면에서 연결합니다. 단순 소개가 아니라
-          실제 업무 기능으로 바로 이어지는 Workflow 중심 Labs 구조를 목표로 합니다.
+        <p className="mt-5 max-w-4xl text-base text-slate-400 sm:text-lg">
+          Slack Nyangi를 포함해 팀에서 운영하는 App과 Solution을 한 화면에서 연결합니다. 단순 소개가
+          아니라 실제 업무 기능으로 바로 이어지는 Workflow 중심 Labs 구조를 목표로 합니다.
         </p>
 
         <div className="mt-7 flex flex-wrap gap-3">
@@ -105,6 +105,14 @@ function HomePage() {
               <span className="text-xs text-slate-400">{label}</span>
             </div>
           ))}
+        </div>
+
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-16 -top-2 hidden h-[180px] w-[180px] items-center justify-center lg:flex"
+        >
+          <div className="hero-orb-glow absolute left-1/2 top-1/2 h-[132px] w-[132px] -translate-x-1/2 -translate-y-1/2 rounded-full" />
+          <div className="hero-orb absolute left-1/2 top-1/2 h-16 w-16 -translate-x-1/2 -translate-y-1/2 rounded-full" />
         </div>
       </section>
 
