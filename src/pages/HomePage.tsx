@@ -10,14 +10,14 @@ function HomePage() {
       >
         <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-[radial-gradient(circle,rgba(120,169,255,0.22),transparent_65%)]" />
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#78a9ff]">AI LABS PLATFORM</p>
-        <h1 className="mt-3 text-4xl font-semibold leading-[0.98] tracking-[-0.03em] text-slate-50 sm:text-6xl lg:text-7xl">
-          앱과 워크플로를 연결하는
+        <h1 className="mt-3 text-3xl font-semibold leading-[1.05] tracking-[-0.02em] text-slate-50 sm:text-5xl lg:text-6xl">
+          App과 Workflow를 연결하는
           <br />
           통합형 Labs 허브
         </h1>
         <p className="mt-5 max-w-3xl text-base text-slate-400 sm:text-lg">
-          Slack Nyangi를 포함해 팀에서 운영하는 앱과 솔루션을 한 화면에서 연결합니다. 단순 소개가 아니라
-          실제 업무 기능으로 바로 이어지는 Labs 구조를 목표로 합니다.
+          Slack Nyangi를 포함해 팀에서 운영하는 App과 Solution을 한 화면에서 연결합니다. 단순 소개가 아니라
+          실제 업무 기능으로 바로 이어지는 Workflow 중심 Labs 구조를 목표로 합니다.
         </p>
 
         <div className="mt-7 flex flex-wrap gap-3">
