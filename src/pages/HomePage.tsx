@@ -1,11 +1,66 @@
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Link } from 'react-router-dom'
 import { platformCards, roadmapItems, showcaseItems } from '../data/labsContent'
 
+gsap.registerPlugin(ScrollTrigger)
+
 function HomePage() {
+  const pageRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    if (!pageRef.current) return
+
+    const ctx = gsap.context(() => {
+      const revealTargets = gsap.utils.toArray<HTMLElement>('[data-reveal]')
+      revealTargets.forEach((target) => {
+        gsap.fromTo(
+          target,
+          { autoAlpha: 0, y: 36 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.9,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: target,
+              start: 'top 82%',
+              toggleActions: 'play none none reverse',
+            },
+          },
+        )
+      })
+
+      gsap.utils.toArray<HTMLElement>('[data-stagger-list]').forEach((list) => {
+        const items = list.querySelectorAll('li')
+        gsap.fromTo(
+          items,
+          { autoAlpha: 0, y: 14 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.45,
+            stagger: 0.08,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: list,
+              start: 'top 85%',
+              toggleActions: 'play none none reverse',
+            },
+          },
+        )
+      })
+    }, pageRef)
+
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <main className="mx-auto w-[min(1160px,calc(100%-24px))] pb-12 pt-6">
+    <main ref={pageRef} className="mx-auto w-[min(1160px,calc(100%-24px))] pb-12 pt-6">
       <section
         id="overview"
+        data-reveal
         className="relative overflow-hidden rounded-[28px] border border-slate-700 bg-slate-900 px-6 py-10 shadow-[0_20px_48px_rgba(0,0,0,0.35)] md:px-12"
       >
         <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-[radial-gradient(circle,rgba(120,169,255,0.22),transparent_65%)]" />
@@ -53,7 +108,7 @@ function HomePage() {
         </div>
       </section>
 
-      <section id="platform-map" className="mt-6 rounded-2xl border border-slate-700 bg-slate-900 p-6">
+      <section id="platform-map" data-reveal className="mt-6 rounded-2xl border border-slate-700 bg-slate-900 p-6">
         <h2 className="text-3xl font-semibold tracking-tight text-slate-100">Platform Map</h2>
         <p className="mt-3 max-w-3xl text-slate-400">
           현재 운영 중인 도메인을 기능 중심으로 묶어, 확장 가능한 Labs 포트폴리오로 관리합니다.
@@ -73,7 +128,7 @@ function HomePage() {
               ) : null}
               <h3 className="text-lg font-semibold text-slate-100">{card.title}</h3>
               {card.items ? (
-                <ul className="mt-3 space-y-2 text-sm text-slate-300">
+                <ul data-stagger-list className="mt-3 space-y-2 text-sm text-slate-300">
                   {card.items.map((item) => (
                     <li key={item} className="rounded-lg border border-slate-700/80 bg-slate-900/70 px-3 py-2">
                       {item}
@@ -88,7 +143,7 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="mt-6 rounded-2xl border border-slate-700 bg-slate-900 p-6">
+      <section data-reveal className="mt-6 rounded-2xl border border-slate-700 bg-slate-900 p-6">
         <h2 className="text-3xl font-semibold tracking-tight text-slate-100">Slack Nyangi 핵심 운영 안내</h2>
         <p className="mt-3 max-w-3xl text-slate-400">
           실제 운영 관점에서 Slack Nyangi가 어떤 흐름을 제공하는지 빠르게 이해하고, 도입팀이 바로 실행할 수
@@ -97,7 +152,7 @@ function HomePage() {
         <div className="mt-5 grid grid-cols-1 items-stretch gap-3 md:grid-cols-[1.15fr_0.85fr]">
           <article className="rounded-xl border border-slate-700 bg-slate-800/80 p-4 transition hover:-translate-y-1 hover:border-[#78a9ff]/60">
             <h3 className="text-lg font-semibold text-slate-100">운영 포인트</h3>
-            <ul className="mt-3 space-y-2 text-sm text-slate-300">
+            <ul data-stagger-list className="mt-3 space-y-2 text-sm text-slate-300">
               {showcaseItems.map((item) => (
                 <li key={item} className="rounded-lg border border-slate-700/80 bg-slate-900/70 px-3 py-2">
                   {item}
@@ -126,7 +181,7 @@ function HomePage() {
         </div>
       </section>
 
-      <section id="roadmap" className="mt-6 rounded-2xl border border-slate-700 bg-slate-900 p-6">
+      <section id="roadmap" data-reveal className="mt-6 rounded-2xl border border-slate-700 bg-slate-900 p-6">
         <h2 className="text-3xl font-semibold tracking-tight text-slate-100">Labs 방향성</h2>
         <div className="mt-5 grid gap-3 md:grid-cols-3">
           {roadmapItems.map((item) => (
